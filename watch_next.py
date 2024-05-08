@@ -16,10 +16,13 @@ def load_movie_descriptions(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             return file.readlines()
     except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
+        print(f"Error: The file '{file_path}' was not found.")
         return []
     except UnicodeDecodeError:
         print(f"Error: Unable to decode file '{file_path}'. Please ensure it's encoded properly.")
+        return []
+    except Exception as e:
+        print(f"Error: An unexpected error occurred while loading the file: {e}")
         return []
 
 def find_similar_movie(query_description, movie_descriptions):
